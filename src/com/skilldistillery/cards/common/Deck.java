@@ -29,5 +29,5 @@ public class Deck {
 	public void shuffle() {
 		Collections.shuffle(cardsInDeck);
 	}
-	
+	//NO getCards
 }	
