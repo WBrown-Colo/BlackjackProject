@@ -5,7 +5,7 @@ import com.skilldistillery.cards.common.Card;
 public class Player {
 	
 	//One field, and one field only
-	private BlackjackHand hand;
+	protected BlackjackHand hand;
 	//NO List<Cards> !!!!
 	
 	public Player() {

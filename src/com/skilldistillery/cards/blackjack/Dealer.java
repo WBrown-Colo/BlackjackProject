@@ -16,4 +16,28 @@ public class Dealer extends Player {
 	public Card dealCard() {
 		return deck.dealCard();
 	}
+	
+	public void shuffle() {
+		return;
+	}
+	
+	@Override
+	public void addCardToHand(Card card) {
+		super.addCardToHand(card);
+	}
+	
+	public void displayHand() {
+		super.displayHand();
+		System.out.println();
+	}
+	
+	public void displayHand(boolean showCard) {
+		hand.displayHand(showCard);
+		System.out.println();
+	}
+	
+	@Override
+	public int getHandValue() {
+		return super.getHandValue();
+	}
 }
