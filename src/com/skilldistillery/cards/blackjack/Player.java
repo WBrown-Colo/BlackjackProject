@@ -17,5 +17,13 @@ public class Player {
 		
 	}
 	
+	public int getHandValue() {
+		return hand.getHandValue();
+	}
+	
+	public void displayHand() {
+		hand.displayHand();
+	}
+	
 	//NO getHand()  !!!
 }

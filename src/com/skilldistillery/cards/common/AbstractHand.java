@@ -16,5 +16,11 @@ public abstract class AbstractHand {
 	public void addCard(Card card) {
 		cardsInHand.add(card);
 	}
+	
+	public void displayHand() {
+		for (Card card : cardsInHand) {
+			System.out.println(card);
+		}
+	}
 
 }
