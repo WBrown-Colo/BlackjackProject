@@ -25,5 +25,27 @@ public class BlackjackHand extends AbstractHand{
 			System.out.println(cardsInHand.get(0));
 		}
 	}
+	
+	public boolean isBust() {
+		if (getHandValue() > 21) {
+			return true;
+		}
+		else {
+		return false;
+		}
+	}
+	
+	public boolean isBlackjack() {
+		if (getHandValue() == 21) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+	
+	public void hitOrStand() {
+		
+	}
 
 }
