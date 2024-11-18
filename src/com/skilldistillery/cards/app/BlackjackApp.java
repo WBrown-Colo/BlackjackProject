@@ -4,68 +4,72 @@ import java.util.Scanner;
 
 import com.skilldistillery.cards.blackjack.Dealer;
 import com.skilldistillery.cards.blackjack.Player;
+import com.skilldistillery.cards.common.AbstractHand;
 
 public class BlackjackApp {
-	
+
 	private Dealer dealer;
 	private Player player;
 	private Scanner kb;
-	
+
 	private BlackjackApp() {
 		dealer = new Dealer();
 		player = new Player();
 		kb = new Scanner(System.in);
 	}
-	
+
 	public static void main(String[] args) {
 		BlackjackApp app = new BlackjackApp();
 		app.playGame();
 	}
-	
+
 	public void playGame() {
-		//INTRO
+		// INTRO
 		System.out.println("Let's play BLACKJACK!");
 		System.out.println();
-		//DEALER SHUFFLING
+		// DEALER SHUFFLING
 		System.out.println("The dealer is shuffling the cards.");
 		dealer.shuffle();
-		//PLAYER 1ST CARD
+		System.out.println();
+		// PLAYER 1ST CARD
 		player.addCardToHand(dealer.dealCard());
 		System.out.println("Your first card is a: ");
 		player.displayHand();
 		System.out.println();
-		//DEALER HIDDEN CARD
+		// DEALER HIDDEN CARD
 		System.out.println("The dealer's first card is hidden.");
 		dealer.addCardToHand(dealer.dealCard());
 		System.out.println();
-		//PLAYER 2ND CARD
+		// PLAYER 2ND CARD
 		player.addCardToHand(dealer.dealCard());
 		System.out.println("Your two cards are the: ");
 		player.displayHand();
 		System.out.println();
-		//DEALER HAND
+		// DEALER HAND
 		System.out.println("The dealer's cards are the: ");
 		dealer.addCardToHand(dealer.dealCard());
 		dealer.displayHand();
-		//PLAYER HAND VALUE
+		// PLAYER HAND VALUE
 		System.out.println("Your hand value is " + player.getHandValue());
 		System.out.println();
-		
+
 		if (player.getHandValue() == 21) {
 			System.out.println("YOU HIT BLACKJACK!!!");
 		}
 		if (dealer.getHandValue() == 21) {
 			System.out.println("SORRY, THE DEALER HIT BLACKJACK.");
 		}
-		else {
+		if (player.getHandValue() > 21) {
+			System.out.println("Sorry, you busted. DEALER WINS.");
+		} else {
 			hitOrStand();
 		}
-		
+
 	}
-	
+
 	public boolean hitOrStand() {
 		printMenu();
-		
+
 		int choice = 0;
 		boolean userHits = false;
 		while (true) {
@@ -74,21 +78,30 @@ public class BlackjackApp {
 				if (choice == 1) {
 					player.addCardToHand(dealer.dealCard());
 					player.displayHand();
-					System.out.println("Your hand is " + player.getHandValue());
+					System.out.println("Your hand value is " + player.getHandValue());
+					if (player.getHandValue() > 21) {
+						System.out.println("Sorry, you busted. DEALER WINS.");
+						// playGame();
+					}
 					userHits = true;
-					validateWin();
-
+					printMenu();
+					// validateWin();
 
 				} else if (choice == 2) {
 					userHits = false;
 					dealerHitStand();
 					validateWin();
-
 					break;
 
 				} else if (choice == 3) {
 					userHits = false;
+					System.out.println("Thank you for playing.");
 					break;
+
+				} else if (choice == 4) {
+					playGame();
+					break;
+
 				} else {
 					throw new IllegalArgumentException();
 				}
@@ -100,13 +113,12 @@ public class BlackjackApp {
 		return userHits;
 
 	}
-	
+
 	public void dealerHitStand() {
 		if (dealer.getHandValue() >= 17) {
 			System.out.println("The dealer decided not to hit.");
 			dealer.displayHand(true);
-		}
-		else {
+		} else {
 			while (dealer.getHandValue() < 17 && dealer.getHandValue() < player.getHandValue()) {
 				System.out.println("The card drawn by the dealer is: ");
 				dealer.addCardToHand(dealer.dealCard());
@@ -117,15 +129,15 @@ public class BlackjackApp {
 			}
 		}
 		validateWin();
-	}	
-	
+	}
+
 	public void validateWin() {
 		if (player.getHandValue() == 21) {
 			System.out.println("YOU HIT BLACKJACK!!!");
-			System.out.println("Your hand is " + player.getHandValue());
+			System.out.println("Your hand value is " + player.getHandValue());
 
 		}
-		
+
 		if (dealer.getHandValue() == 21) {
 			System.out.println("SORRY, THE DEALER HIT BLACKJACK!");
 			System.out.println("Dealer's hand is  " + dealer.getHandValue());
@@ -144,7 +156,7 @@ public class BlackjackApp {
 			System.out.println("Tie game.");
 		}
 	}
-	
+
 	public void printMenu() {
 		System.out.println(" ================== ");
 		System.out.println("| Select your move |");
@@ -152,9 +164,8 @@ public class BlackjackApp {
 		System.out.println("| 1. Hit           |");
 		System.out.println("| 2. Stand         |");
 		System.out.println("| 3. Quit          |");
+		System.out.println("| 4. Play Again    |");
 		System.out.println(" ================== ");
 	}
-	
-	//TODO: Why wont cards shuffle?
 
 }

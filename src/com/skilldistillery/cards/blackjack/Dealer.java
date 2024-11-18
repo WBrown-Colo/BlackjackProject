@@ -18,7 +18,7 @@ public class Dealer extends Player {
 	}
 	
 	public void shuffle() {
-		return;
+		deck.shuffle();
 	}
 	
 	@Override
