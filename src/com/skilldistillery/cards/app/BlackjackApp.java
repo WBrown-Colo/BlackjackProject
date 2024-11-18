@@ -64,13 +64,7 @@ public class BlackjackApp {
 	}
 	
 	public boolean hitOrStand() {
-		System.out.println(" ================== ");
-		System.out.println("| Select your move |");
-		System.out.println("|      * * * *     |");
-		System.out.println("| 1. Hit           |");
-		System.out.println("| 2. Stand         |");
-		System.out.println("| 3. Quit          |");
-		System.out.println(" ================== ");
+		printMenu();
 		
 		int choice = 0;
 		boolean userHits = false;
@@ -151,7 +145,16 @@ public class BlackjackApp {
 		}
 	}
 	
-	//TODO: Create a printMenu(), move menu
+	public void printMenu() {
+		System.out.println(" ================== ");
+		System.out.println("| Select your move |");
+		System.out.println("|      * * * *     |");
+		System.out.println("| 1. Hit           |");
+		System.out.println("| 2. Stand         |");
+		System.out.println("| 3. Quit          |");
+		System.out.println(" ================== ");
+	}
+	
 	//TODO: Why wont cards shuffle?
 
 }
