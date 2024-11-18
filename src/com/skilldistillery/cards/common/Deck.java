@@ -28,6 +28,7 @@ public class Deck {
 	
 	public void shuffle() {
 		Collections.shuffle(cardsInDeck);
+		return;
 	}
 	//NO getCards
 }	

@@ -31,21 +31,22 @@ public class BlackjackApp {
 		dealer.shuffle();
 		//PLAYER 1ST CARD
 		player.addCardToHand(dealer.dealCard());
-		System.out.println("Your first card is: ");
+		System.out.println("Your first card is a: ");
 		player.displayHand();
 		System.out.println();
 		//DEALER HIDDEN CARD
-		System.out.println("The dealer's card is hidden.");
+		System.out.println("The dealer's first card is hidden.");
 		dealer.addCardToHand(dealer.dealCard());
 		System.out.println();
 		//PLAYER 2ND CARD
 		player.addCardToHand(dealer.dealCard());
-		System.out.println("Your second card is: ");
+		System.out.println("Your two cards are the: ");
 		player.displayHand();
 		System.out.println();
 		//DEALER HAND
-		System.out.println("The dealer's cards are: ");
+		System.out.println("The dealer's cards are the: ");
 		dealer.addCardToHand(dealer.dealCard());
+		dealer.displayHand();
 		//PLAYER HAND VALUE
 		System.out.println("Your hand value is " + player.getHandValue());
 		System.out.println();
@@ -107,12 +108,25 @@ public class BlackjackApp {
 	}
 	
 	public void dealerHitStand() {
-		//TODO: create
-	}
+		if (dealer.getHandValue() >= 17) {
+			System.out.println("The dealer decided not to hit.");
+			dealer.displayHand(true);
+		}
+		else {
+			while (dealer.getHandValue() < 17 && dealer.getHandValue() < player.getHandValue()) {
+				System.out.println("The card drawn by the dealer is: ");
+				dealer.addCardToHand(dealer.dealCard());
+
+				dealer.displayHand();
+				System.out.println("Dealer's hand is  " + dealer.getHandValue());
+
+			}
+		}
+		validateWin();
+	}	
 	
 	public void validateWin() {
 		//TODO: create
 	}
 
 }
-// NO MORE FIELDS!!!
