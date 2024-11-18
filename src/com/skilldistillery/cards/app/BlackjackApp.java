@@ -126,7 +126,32 @@ public class BlackjackApp {
 	}	
 	
 	public void validateWin() {
-		//TODO: create
+		if (player.getHandValue() == 21) {
+			System.out.println("YOU HIT BLACKJACK!!!");
+			System.out.println("Your hand is " + player.getHandValue());
+
+		}
+		
+		if (dealer.getHandValue() == 21) {
+			System.out.println("SORRY, THE DEALER HIT BLACKJACK!");
+			System.out.println("Dealer's hand is  " + dealer.getHandValue());
+		}
+
+		if (player.getHandValue() > 21) {
+			System.out.println("Sorry, you busted. The dealer wins.");
+
+		} else if (dealer.getHandValue() > 21) {
+			System.out.println("The dealer busted. YOU WIN!!!");
+		} else if (dealer.getHandValue() > player.getHandValue()) {
+			System.out.println("Sorry, the Dealer wins.");
+		} else if (dealer.getHandValue() < player.getHandValue()) {
+			System.out.println("YOU WIN!!!");
+		} else {
+			System.out.println("Tie game.");
+		}
 	}
+	
+	//TODO: Create a printMenu(), move menu
+	//TODO: Why wont cards shuffle?
 
 }
